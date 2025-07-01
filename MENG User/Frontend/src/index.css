@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Outfit:wght@100..900&family=Prata&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* a = NavLink */
+a.active hr{        
+    display: block;
+}
+
+*{
+    font-family: 'Cairo', sans-serif;
+}
+
+.prata-regular {
+    font-family: "Prata", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+::-webkit-scrollbar{
+    width: 12px;
+}
+::-webkit-scrollbar-track{
+    border-radius: 5px;
+    box-shadow: inset 0 0 10px #68D5DF;
+}
+::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    background: linear-gradient(to top , #68D5DF , #263D54);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.text-outline-black {
+    color: white;
+    -webkit-text-stroke: 2px black;
+    text-shadow: 0px 0px 30px var(--footerColorUp);
+}
+
+.text-outline-black-sm {
+    color: white;
+    -webkit-text-stroke: 1.5px black;
+    text-shadow: 0px 0px 30px var(--textColor2);
+}
+
+.text-outline-black-sm-2 {
+    color: black;
+    -webkit-text-stroke: .8px #A8BDBF;
+    text-shadow: 0px 0px 30px var(--color1Hover);
+}
+
+.text-outline-black-sm-3 {
+    /* color: black;
+    -webkit-text-stroke: .8px #A8BDBF; */
+    text-shadow: 0px 0px 4px var(--textColor1);
+}
+
+/* يمكن إضافته في ملف الـ CSS الخاص بك */
+.line-through {
+    text-decoration: line-through;
+}
+
+:root{
+    --color1:#263D54;
+    --color1Hover:#68D5DF;
+    /* --color2:#A8BDBF; */
+    --color2:#F4F4F4;
+    --footerColor:#0A142F;
+    --footerColorUp:#0081FE;
+    --gradientTitleColor1:#C8D2DE;
+    --gradientTitleColor2:#75D4DD;
+    --textColor1: #FFFFFF;
+    --textColor2: #000000;
+    --borderColor1: #FFFFFF;
+    --borderColor2: #000000;
+}
+
+/* Animation____________________________________ */
+.text-animation {
+    display: inline-block;
+    color: #2c2c2c;
+    font-weight: 600;
+    position: relative;
+}
+
+.word-change::before {
+    content: "website";
+    color: #263D54;
+    animation: wordChange 7.5s linear infinite;
+    padding-left: 8px;
+}
+
+.word-change::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-left: 2px solid #263D54;
+    animation: typing 2.5s steps(10, end) infinite, blink 0.8s step-end infinite;
+    right: 0;
+    top: 0;
+    /* background-color: #A8BDBF; */
+    background-color: #F4F4F4;
+}
+
+@keyframes wordChange {
+    0%, 33% {
+        content: "website";
+    }
+    34%, 66% {
+        content: "platform";
+    }
+    67%, 100% {
+        content: "universe";
+    }
+}
+
+@keyframes typing {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 20%;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+
+@media(max-width:640px){
+    a.active{
+        background-color: var(--color1);
+        color: var(--textColor1);
+    }
+}
+
+
+
+
+
+
+
+
+  /* Theme Switch */
+  /* The switch - the box around the slider */
+    .switch {
+        font-size: 17px;
+        position: relative;
+        display: inline-block;
+        width: 4em;
+        height: 2.2em;
+        border-radius: 30px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Hide default HTML checkbox */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    /* The slider */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #2a2a2a;
+        transition: 0.4s;
+        border-radius: 30px;
+        overflow: hidden;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 1.2em;
+        width: 1.2em;
+        border-radius: 20px;
+        left: 0.5em;
+        bottom: 0.5em;
+        transition: 0.4s;
+        transition-timing-function: cubic-bezier(0.81, -0.04, 0.38, 1.5);
+        box-shadow: inset 8px -4px 0px 0px #fff;
+    }
+
+    .switch input:checked + .slider {
+        background-color: #00a6ff;
+    }
+
+    .switch input:checked + .slider:before {
+        transform: translateX(1.8em);
+        box-shadow: inset 15px -4px 0px 15px #ffcf48;
+    }
+
+    .star {
+        background-color: #fff;
+        border-radius: 50%;
+        position: absolute;
+        width: 5px;
+        transition: all 0.4s;
+        height: 5px;
+    }
+
+    .star_1 {
+        left: 2.5em;
+        top: 0.5em;
+    }
+
+    .star_2 {
+        left: 2.2em;
+        top: 1.2em;
+    }
+
+    .star_3 {
+        left: 3em;
+        top: 0.9em;
+    }
+
+    .switch input:checked ~ .slider .star {
+        opacity: 0;
+    }
+
+    .cloud {
+        width: 3.5em;
+        position: absolute;
+        bottom: -1.4em;
+        left: -1.1em;
+        opacity: 0;
+        transition: all 0.4s;
+    }
+
+    .switch input:checked ~ .slider .cloud {
+        opacity: 1;
+    }
