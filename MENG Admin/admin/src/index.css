@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Outfit:wght@100..900&family=Prata&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    font-family: Outfit;
+}
+
+select,input,textarea{
+    border: 1px solid #c2c2c2;
+    outline-color: #0081FE;
+    border-radius: 4px;
+}
+
+.active{
+    background-color: #ffebf5;
+    border-color: #0081FE;
+}
+
+::-webkit-scrollbar{
+    width: 12px;
+}
+::-webkit-scrollbar-track{
+    border-radius: 5px;
+    box-shadow: inset 0 0 10px #0081FE;
+}
+::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    background: linear-gradient(to top , #0081FE , #263D54);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* يمكن إضافته في ملف الـ CSS الخاص بك */
+.line-through {
+    text-decoration: line-through;
+}
+
+:root{
+    --color1:#263D54;
+    --color1Hover:#68D5DF;
+    --color2:#F4F4F4;
+    --footerColor:#0A142F;
+    --footerColorUp:#0081FE;
+    --gradientTitleColor1:#C8D2DE;
+    --gradientTitleColor2:#0068cf;
+    --textColor1: #FFFFFF;
+    --textColor2: #000000;
+    --borderColor1: #FFFFFF;
+    --borderColor2: #000000;
+}
