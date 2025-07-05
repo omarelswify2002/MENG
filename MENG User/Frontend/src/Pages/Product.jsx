@@ -152,44 +152,68 @@ export default function Product() {
                         </div>
                     </div>
 
-                    <div className="text-2xl font-bold text-[--color1] dark:text-white">
-                        {productData.price} {currency}
+                    <div className="flex items-center gap-4">
+                        <div className="text-2xl font-bold text-[--color1] dark:text-white">
+                            {productData.price} {currency}
+                        </div>
+                        {productData.quantity === 0 && (
+                            <span className="px-4 py-1 rounded-full bg-red-100 text-red-700 font-semibold text-base border border-red-300 animate-pulse shadow-sm">
+                                Out of Stock
+                            </span>
+                        )}
                     </div>
 
                     <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                         {productData.description}
                     </p>
                     
-                    {productData.sizes?.length > 0 && (
-                        <div className="space-y-4 pt-2">
-                            <h3 className="text-lg font-semibold">Select Size</h3>
-                            <div className="flex flex-wrap gap-3">
-                                {productData.sizes.map((size, index) => (
-                                    <button 
-                                        key={index}
-                                        onClick={() => setSizes(size)} 
-                                        className={`border py-2 px-4 bg-[#263D54] text-white dark:text-[#263D54] dark:bg-white border-[--color1] hover:bg-white hover:text-black dark:hover:bg-[#263D54] dark:hover:text-white ${size === sizes ? '!bg-white !text-[#263D54] dark:!bg-[#263D54] dark:!text-white' : ''} rounded-3xl`}
-                                    >
-                                        {size}
-                                    </button>
-                                ))}
+                    <div className="flex flex-col md:flex-row md:space-x-8">
+                        {/* Sizes Section */}
+                        {productData.sizes?.length > 0 && (
+                            <div className="space-y-4 pt-2 flex-1">
+                                <h3 className="text-lg font-semibold">Select Size</h3>
+                                <div className="flex flex-wrap gap-3">
+                                    {productData.sizes.map((size, index) => (
+                                        <button
+                                            key={index}
+                                            onClick={() => setSizes(size)}
+                                            className={`border py-2 px-4 bg-[#263D54] text-white dark:text-[#263D54] dark:bg-white border-[--color1] hover:bg-white hover:text-black dark:hover:bg-[#263D54] dark:hover:text-white ${size === sizes ? '!bg-white !text-[#263D54] dark:!bg-[#263D54] dark:!text-white' : ''} rounded-3xl`}
+                                        >
+                                            {size}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Quantity Input */}
+                        <div className="space-y-4 pt-2 flex-2">
+                            <h3 className="text-lg font-semibold">Quantity</h3>
+                            <div className="flex items-center justify-center">
+                                <span
+                                >
+                                    {productData.quantity} available
+                                </span>
                             </div>
                         </div>
-                    )}
-                
+                    </div>
+
                     {/* Add to Cart Button with Favorites */}
                     <div className="flex gap-4 mt-6">
-                        {/* Add to Cart Button */}
-                        <button 
-                            onClick={() => addToCart(productData._id, sizes || productData.sizes)} 
-                            className="flex-1 flex items-center justify-center gap-2 bg-[#263D54] text-white dark:text-[#263D54] dark:bg-white hover:bg-opacity-90 py-3 px-6 rounded-full font-medium transition-colors"
+                        <button
+                            onClick={() => addToCart(productData._id, sizes || productData.sizes)}
+                            disabled={productData.quantity === 0}
+                            className={`flex-1 flex items-center justify-center gap-2 py-3 px-6 rounded-full font-medium transition-colors
+                            ${productData.quantity === 0
+                                ? 'bg-gray-400 text-white cursor-not-allowed opacity-70'
+                                : 'bg-[#263D54] text-white dark:text-[#263D54] dark:bg-white hover:bg-opacity-90'
+                            }`}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
-                            ADD TO CART
+                            {productData.quantity === 0 ? 'Out of Stock' : 'ADD TO CART'}
                         </button>
-
                         {/* Favorite Button */}
                         <button
                             onClick={() => toggleFavourite(productData._id)}

@@ -13,16 +13,15 @@ export default function Cart() {
         updateCartItem, 
         removeFromCart,
         navigate,
-        getUserCart // استيراد الدالة من السياق
+        getUserCart
     } = useContext(ShopContext);
     
     const [cartData, setCartData] = useState([]);
 
     useEffect(() => {
-        // استدعاء getUserCart عند تحميل المكون لتحديث بيانات السلة
         const fetchCartData = async () => {
             await getUserCart();
-            await getProductsData(); // تأكد من جلب بيانات المنتجات
+            await getProductsData();
         };
         fetchCartData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -103,7 +102,7 @@ export default function Cart() {
                                     onChange={(e) => handleUpdateQuantity(
                                         item.product, 
                                         parseInt(e.target.value) || 0 , item.size
-                            )} 
+                                    )} 
                                     className="border max-w-10 sm:max-w-20 py-1 px-1 sm:px-2" 
                                     type="number" 
                                     min="1" 

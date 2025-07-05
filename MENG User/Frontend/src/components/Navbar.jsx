@@ -1,20 +1,18 @@
-//new navbar------------------------------------------------------------
 import { Link, NavLink } from 'react-router-dom'
 import {graduations} from '../graduation_project/graduations.js'
 import { useContext, useState, useRef, useEffect } from 'react'
 import { ShopContext } from '../context/ShopContextProvider';
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { RiSearchLine, RiCloseLine } from "react-icons/ri";
+import { RiSearchLine } from "react-icons/ri";
 import { MdOutlinePerson } from "react-icons/md";
 import { BsHandbag, BsHandbagFill } from "react-icons/bs";
 import { TbMenuDeep } from "react-icons/tb";
 import { IoIosArrowBack } from "react-icons/io";
-import { MdOutlineSettings } from "react-icons/md";
+import SearchBar from './SearchBar.jsx';
 
 export default function Navbar() {
     const [visible, setVisible] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
-    const [searchQuery, setSearchQuery] = useState('');
     const searchRef = useRef(null);
     const personalRef = useRef(null);
     const settingsRef = useRef(null);
@@ -22,20 +20,17 @@ export default function Navbar() {
         getCartCount, 
         navigate, 
         token, 
-        setToken, 
-        setCartItems, 
         cartItems,
         favourites,
         isDark,
         setIsDark,
-        searchProductsWithLLM,
-        setProducts
+        logout
     } = useContext(ShopContext);
         
+    // eslint-disable-next-line no-unused-vars
     const [showSetting, setShowSetting] = useState(false);
     const [showPersonal, setShowPersonal] = useState(false);
 
-    // إغلاق البحث عند الضغط خارج المربع
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (searchRef.current && !searchRef.current.contains(event.target)) {
@@ -49,27 +44,8 @@ export default function Navbar() {
         };
     }, []);
 
-    function logout() {
-        navigate('/Login');
-        localStorage.removeItem('token');
-        setToken('');
-        setCartItems({});
-    }
-
-    const handleSearchSubmit = async (e) => {
-        e.preventDefault();
-        if (searchQuery.trim()) {
-            // Use the LLM search function
-            const results = await searchProductsWithLLM(searchQuery);
-            
-            // Update the products in context
-            setProducts(results);
-            
-            // Navigate to collections page with search query
-            navigate(`/Collections?search=${encodeURIComponent(searchQuery)}`);
-            setShowSearch(false);
-            setSearchQuery('');
-        }
+    const handleLogout = async () => {
+        await logout(); // Call the context logout function
     };
 
     useEffect(() => {
@@ -112,7 +88,6 @@ export default function Navbar() {
             </ul>
 
             <div className='flex items-center gap-6'>
-                {/* Search Icon - تم التعديل هنا */}
                 <div className="relative duration-200 hover:scale-150">
                     <RiSearchLine 
                         onClick={() => {
@@ -137,25 +112,12 @@ export default function Navbar() {
                     )}
                 </Link>
 
-                {/* <div className="group relative">
-                    <MdOutlinePerson onClick={()=>{token ? setShowPersonal(!showPersonal) : navigate('/Login')}} className='text-xl cursor-pointer text-[--textColor1] hover:text-[--color1Hover] duration-200 hover:scale-150'/>
-                    {showPersonal &&
-                    <div className='absolute dropdown-menu right-0 top-5 pt-4'>
-                        <div className='flex flex-col items-center gap-1 w-28 py-2 px-2 bg-slate-100 text-[--textColor1] sm:text-gray-300 rounded'>
-                            <p onClick={()=>{navigate('/profile')}} className='text-sm bg-[--color1] rounded-lg text-[10px] dark:bg-white dark:text-black dark:hover:bg-gray-300 text-center w-full px-2 py-0.5 border-[--borderColor1] cursor-pointer hover:bg-slate-800 text-[--textColor1]'>My Profile</p>
-                            <p onClick={()=>{navigate('/orders')}} className='text-sm bg-[--color1] rounded-lg text-[10px] dark:bg-white dark:text-black dark:hover:bg-gray-300 text-center w-full px-2 py-0.5 border-[--borderColor1] cursor-pointer hover:bg-slate-800 text-[--textColor1]'>Orders</p>
-                            <p onClick={logout} className='text-sm bg-[--color1] rounded-lg text-[10px] dark:bg-white dark:text-black dark:hover:bg-gray-300 text-center w-full px-2 py-0.5 border-[--borderColor1] cursor-pointer hover:bg-slate-800 text-[--textColor1]'>Logout</p>
-                        </div>
-                    </div>}
-                </div> */}
-
-                {/* قائمة الشخصية */}
                 <div className="group relative" ref={personalRef}>
                     <MdOutlinePerson 
                         onClick={() => {
                             if (token) {
                                 setShowPersonal(!showPersonal);
-                                setShowSetting(false); // إغلاق القائمة الأخرى إذا كانت مفتوحة
+                                setShowSetting(false);
                             } else {
                                 navigate('/Login');
                             }
@@ -171,14 +133,13 @@ export default function Navbar() {
                                 <p onClick={() => { navigate('/orders'); setShowPersonal(false); }} className='text-sm bg-[--color1] rounded-lg text-[10px] dark:bg-white dark:text-black dark:hover:bg-gray-300 text-center w-full px-2 py-0.5 border-[--borderColor1] cursor-pointer hover:bg-slate-800 text-[--textColor1]'>
                                     Orders
                                 </p>
-                                <p onClick={() => { logout(); setShowPersonal(false); }} className='text-sm bg-[--color1] rounded-lg text-[10px] dark:bg-white dark:text-black dark:hover:bg-gray-300 text-center w-full px-2 py-0.5 border-[--borderColor1] cursor-pointer hover:bg-slate-800 text-[--textColor1]'>
+                                <p onClick={() => { handleLogout(); setShowPersonal(false); }} className='text-sm bg-[--color1] rounded-lg text-[10px] dark:bg-white dark:text-black dark:hover:bg-gray-300 text-center w-full px-2 py-0.5 border-[--borderColor1] cursor-pointer hover:bg-slate-800 text-[--textColor1]'>
                                     Logout
                                 </p>
                             </div>
                         </div>
                     )}
                 </div>
-
 
                 <Link to={'/Cart'} className='relative duration-200 hover:scale-150'>
                     {getCartCount(0) || cartItems.products.length > 0 ? (
@@ -195,78 +156,30 @@ export default function Navbar() {
                     )}
                 </Link>
 
-                {/* <div className='relative'>
-                    <MdOutlineSettings onClick={()=>setShowSetting(!showSetting)} className='duration-200 hover:scale-150 text-xl cursor-pointer text-[--textColor1] hover:text-[--color1Hover]' />
-                    {showSetting ? 
-                    <div className='absolute dropdown-menu right-0 top-5 pt-4 z-30'>
-                        <div className='flex flex-col items-center gap-1 w-28 py-2 px-2 bg-slate-100 text-[--textColor1] sm:text-gray-300 rounded'>
-
-                            <label className="switch">
-                                <input defaultChecked={isDark} id="checkbox" type="checkbox" onClick={() => setIsDark(!isDark)}/>
-                                <span className="slider">
-                                    <div className="star star_1" />
-                                    <div className="star star_2" />
-                                    <div className="star star_3" />
-                                    <svg viewBox="0 0 16 16" className="cloud_1 cloud">
-                                        <path transform="matrix(.77976 0 0 .78395-299.99-418.63)" fill="#fff" d="m391.84 540.91c-.421-.329-.949-.524-1.523-.524-1.351 0-2.451 1.084-2.485 2.435-1.395.526-2.388 1.88-2.388 3.466 0 1.874 1.385 3.423 3.182 3.667v.034h12.73v-.006c1.775-.104 3.182-1.584 3.182-3.395 0-1.747-1.309-3.186-2.994-3.379.007-.106.011-.214.011-.322 0-2.707-2.271-4.901-5.072-4.901-2.073 0-3.856 1.202-4.643 2.925" />
-                                    </svg>
-                                </span>
-                            </label>
-
-                            <button className="text-sm w-full px-2 py-0.5 border rounded-md shadow-md dark:bg-white dark:text-black bg-[--color1] text-white hover:bg-slate-800 dark:hover:bg-gray-300">
-                                Language
-                            </button>
-                        </div>
-                    </div> : null}
-                </div>    */}
-
-                {/* قائمة الإعدادات */}
-                <div className='relative' ref={settingsRef}>
-                    <MdOutlineSettings 
+                {/* Dark Mode Option */}
+                <label className="switch">
+                    <input 
+                        defaultChecked={isDark} 
+                        id="checkbox" 
+                        type="checkbox" 
                         onClick={() => {
-                            setShowSetting(!showSetting);
-                            setShowPersonal(false); // إغلاق القائمة الأخرى إذا كانت مفتوحة
-                        }} 
-                        className='duration-200 hover:scale-150 text-xl cursor-pointer text-[--textColor1] hover:text-[--color1Hover]' 
+                            setIsDark(!isDark);
+                            setShowSetting(false);
+                        }}
                     />
-                    {showSetting && (
-                        <div className='absolute dropdown-menu right-0 top-5 pt-4 z-30'>
-                            <div className='flex flex-col items-center gap-1 w-28 py-2 px-2 bg-slate-100 text-[--textColor1] sm:text-gray-300 rounded'>
-                                <label className="switch">
-                                    <input 
-                                        defaultChecked={isDark} 
-                                        id="checkbox" 
-                                        type="checkbox" 
-                                        onClick={() => {
-                                            setIsDark(!isDark);
-                                            setShowSetting(false); // إغلاق القائمة بعد التغيير
-                                        }}
-                                    />
-                                    <span className="slider">
-                                        <div className="star star_1" />
-                                        <div className="star star_2" />
-                                        <div className="star star_3" />
-                                        <svg viewBox="0 0 16 16" className="cloud_1 cloud">
-                                            <path transform="matrix(.77976 0 0 .78395-299.99-418.63)" fill="#fff" d="m391.84 540.91c-.421-.329-.949-.524-1.523-.524-1.351 0-2.451 1.084-2.485 2.435-1.395.526-2.388 1.88-2.388 3.466 0 1.874 1.385 3.423 3.182 3.667v.034h12.73v-.006c1.775-.104 3.182-1.584 3.182-3.395 0-1.747-1.309-3.186-2.994-3.379.007-.106.011-.214.011-.322 0-2.707-2.271-4.901-5.072-4.901-2.073 0-3.856 1.202-4.643 2.925" />
-                                        </svg>
-                                    </span>
-                                </label>
-
-                                <button 
-                                    className="text-sm w-full px-2 py-0.5 border rounded-md shadow-md dark:bg-white dark:text-black bg-[--color1] text-white hover:bg-slate-800 dark:hover:bg-gray-300"
-                                    onClick={() => setShowSetting(false)}
-                                >
-                                    Language
-                                </button>
-                            </div>
-                        </div>
-                    )}
-                </div>
+                    <span className="slider">
+                        <div className="star star_1" />
+                        <div className="star star_2" />
+                        <div className="star star_3" />
+                        <svg viewBox="0 0 16 16" className="cloud_1 cloud">
+                            <path transform="matrix(.77976 0 0 .78395-299.99-418.63)" fill="#fff" d="m391.84 540.91c-.421-.329-.949-.524-1.523-.524-1.351 0-2.451 1.084-2.485 2.435-1.395.526-2.388 1.88-2.388 3.466 0 1.874 1.385 3.423 3.182 3.667v.034h12.73v-.006c1.775-.104 3.182-1.584 3.182-3.395 0-1.747-1.309-3.186-2.994-3.379.007-.106.011-.214.011-.322 0-2.707-2.271-4.901-5.072-4.901-2.073 0-3.856 1.202-4.643 2.925" />
+                        </svg>
+                    </span>
+                </label>
 
                 <TbMenuDeep onClick={()=>setVisible(true)} className='text-[--textColor1] text-xl cursor-pointer sm:hidden'/>
             </div>
             
-            {/* Search Box - يظهر أسفل الـ Navbar */}
             {showSearch && (
                 <div 
                     ref={searchRef}
@@ -275,33 +188,10 @@ export default function Navbar() {
                         animation: 'slideUp 0.3s ease-out'
                     }}
                 >
-                    <form onSubmit={handleSearchSubmit} className="flex items-center py-4 px-24 border-t border-gray-200">
-                        <input
-                            type="text"
-                            autoFocus
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            placeholder="Search for products..."
-                            className="flex-1 border-b-2 border-gray-300 focus:border-[--color1Hover] outline-none py-2 px-4 text-lg transition-all duration-300"
-                        />
-                        <button 
-                            type="submit"
-                            className="ml-4 bg-[--color1Hover] text-white px-6 py-2 rounded-md hover:bg-[--color1] transition-colors duration-300"
-                        >
-                            Search
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => setShowSearch(false)}
-                            className="ml-4 text-gray-500 hover:text-gray-700 transition-colors duration-300"
-                        >
-                            <RiCloseLine className="text-2xl" />
-                        </button>
-                    </form>
+                    <SearchBar showSearch={showSearch} />
                 </div>
             )}
 
-            {/* CSS للـ Animation */}
             <style >{`
                 @keyframes slideUp {
                     from {

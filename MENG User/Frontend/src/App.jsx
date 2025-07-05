@@ -14,40 +14,9 @@ import Footer from "./components/Footer";
 import SearchBar from "./components/SearchBar";
 // eslint-disable-next-line no-unused-vars
 import { ToastContainer, toast } from 'react-toastify';
-// import Verify from "./Pages/Verify";
-// import ForgetPassword from "./Pages/ForgetPassword";
 import ResetPassword from "./Pages/ResetPassword";
 import Profile from "./Pages/Profile";
 import OurPolicy from "./components/OurPolicy"
-// import AuthSuccess from './Pages/AuthSuccess';
-// export default function App() {
-//     return (
-//         // <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
-//         <div className="m-0 p-0 bg-[--color2]">
-//         <ToastContainer />
-//         <Navbar />
-//         <SearchBar/>
-//         <Routes>
-//             <Route path="/" element={<Home/>}/>
-//             <Route path="/Collections" element={<Collections/>}/>
-//             <Route path="/Login" element={<Login/>}/>
-//             <Route path="/ForgetPassword" element={<ForgetPassword/>}/>
-//             <Route path="/ResetPassword" element={<ResetPassword/>}/>
-//             <Route path="/Contact" element={<Contact/>}/>
-//             <Route path="/Cart" element={<Cart/>}/>
-//             <Route path="/Favourites" element={<Favourites />} />
-//             <Route path="/Profile" element={<Profile />} />
-//             <Route path="/About" element={<About/>}/>
-//             <Route path="/Orders" element={<Orders/>}/>
-//             <Route path="/PlaceOrder" element={<PlaceOrder/>}/>
-//             <Route path="/Product/:productId" element={<Product/>}/>
-//             <Route path="/Verify" element={<Verify/>}/>
-//         </Routes>
-//         <Footer/>
-//         </div>
-//     )
-// }
-
 
 export default function App() {
     return (
@@ -56,11 +25,7 @@ export default function App() {
             <ToastContainer />
             <Routes>
                 <Route path="/Login" element={<Login />} />
-                {/* <Route path="/ForgetPassword" element={<ForgetPassword />} /> */}
                 <Route path="/ResetPassword" element={<ResetPassword />} />
-                {/* <Route path="/Verify" element={<Verify />} />
-                <Route path="/auth-success" element={<AuthSuccess />} /> */}
-
                 <Route path="*" element={
                     <>
                         <Navbar />

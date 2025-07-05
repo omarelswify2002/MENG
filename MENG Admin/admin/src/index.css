@@ -14,7 +14,7 @@ select,input,textarea{
 }
 
 .active{
-    background-color: #ffebf5;
+    background-color: #0155aa;
     border-color: #0081FE;
 }
 
@@ -23,11 +23,11 @@ select,input,textarea{
 }
 ::-webkit-scrollbar-track{
     border-radius: 5px;
-    box-shadow: inset 0 0 10px #0081FE;
+    box-shadow: inset 0 0 10px #6d8091;
 }
 ::-webkit-scrollbar-thumb{
     border-radius: 5px;
-    background: linear-gradient(to top , #0081FE , #263D54);
+    background: linear-gradient(to top , #6d8091 , #263D54);
 }
 
 html {
@@ -53,3 +53,188 @@ html {
     --borderColor1: #FFFFFF;
     --borderColor2: #000000;
 }
+
+
+
+
+  /* Theme Switch */
+  /* The switch - the box around the slider */
+    .switch {
+        font-size: 17px;
+        position: relative;
+        display: inline-block;
+        width: 4em;
+        height: 2.2em;
+        border-radius: 30px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Hide default HTML checkbox */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    /* The slider */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #2a2a2a;
+        transition: 0.4s;
+        border-radius: 30px;
+        overflow: hidden;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 1.2em;
+        width: 1.2em;
+        border-radius: 20px;
+        left: 0.5em;
+        bottom: 0.5em;
+        transition: 0.4s;
+        transition-timing-function: cubic-bezier(0.81, -0.04, 0.38, 1.5);
+        box-shadow: inset 8px -4px 0px 0px #fff;
+    }
+
+    .switch input:checked + .slider {
+        background-color: #00a6ff;
+    }
+
+    .switch input:checked + .slider:before {
+        transform: translateX(1.8em);
+        box-shadow: inset 15px -4px 0px 15px #ffcf48;
+    }
+
+    .star {
+        background-color: #fff;
+        border-radius: 50%;
+        position: absolute;
+        width: 5px;
+        transition: all 0.4s;
+        height: 5px;
+    }
+
+    .star_1 {
+        left: 2.5em;
+        top: 0.5em;
+    }
+
+    .star_2 {
+        left: 2.2em;
+        top: 1.2em;
+    }
+
+    .star_3 {
+        left: 3em;
+        top: 0.9em;
+    }
+
+    .switch input:checked ~ .slider .star {
+        opacity: 0;
+    }
+
+    .cloud {
+        width: 3.5em;
+        position: absolute;
+        bottom: -1.4em;
+        left: -1.1em;
+        opacity: 0;
+        transition: all 0.4s;
+    }
+
+    .switch input:checked ~ .slider .cloud {
+        opacity: 1;
+    }
+
+
+
+
+/* Add these dark mode classes to your existing index.css */
+
+/* Dark mode background colors */
+.dark .bg-white {
+  background-color: #1e293b; /* slate-800 */
+}
+
+.dark .bg-gray-100 {
+  background-color: #334155; /* slate-700 */
+}
+
+.dark .bg-gray-50 {
+  background-color: #334155; /* slate-700 */
+}
+
+.dark .bg-blue-50 {
+  background-color: #1e3a8a; /* blue-900 */
+}
+
+.dark .bg-green-50 {
+  background-color: #14532d; /* green-900 */
+}
+
+.dark .bg-yellow-50 {
+  background-color: #713f12; /* amber-900 */
+}
+
+.dark .bg-purple-50 {
+  background-color: #4c1d95; /* purple-900 */
+}
+
+/* Dark mode text colors */
+.dark .text-gray-800 {
+  color: #e2e8f0; /* slate-200 */
+}
+
+.dark .text-gray-700 {
+  color: #cbd5e1; /* slate-300 */
+}
+
+.dark .text-gray-600 {
+  color: #94a3b8; /* slate-400 */
+}
+
+.dark .text-gray-500 {
+  color: #64748b; /* slate-500 */
+}
+
+/* Dark mode border colors */
+.dark .border-gray-200 {
+  border-color: #334155; /* slate-700 */
+}
+
+.dark .border-gray-300 {
+  border-color: #475569; /* slate-600 */
+}
+
+/* Dark mode for form inputs */
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: #1e293b; /* slate-800 */
+  border-color: #475569; /* slate-600 */
+  color: #e2e8f0; /* slate-200 */
+}
+
+.dark input:focus,
+.dark select:focus,
+.dark textarea:focus {
+  outline-color: #60a5fa; /* blue-400 */
+}
+
+/* Dark mode for tables */
+.dark table {
+  color: #e2e8f0; /* slate-200 */
+}
+
+.dark thead {
+  background-color: #1e293b; /* slate-800 */
+}
+
+/* Add any other dark mode overrides you need */

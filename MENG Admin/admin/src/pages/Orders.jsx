@@ -72,7 +72,7 @@ export default function Orders({ token }) {
         <div className="container mx-auto px-4 py-8">
             <div className="flex items-center mb-8">
                 <FiPackage className="text-3xl text-blue-600 mr-3" />
-                <h1 className="text-3xl font-bold text-gray-800">My Orders</h1>
+                <h1 className="text-3xl font-bold text-gray-800 dark:text-white">My Orders</h1>
                 <button 
                     onClick={fetchOrders}
                     className="ml-auto flex items-center text-blue-600 hover:text-blue-800"
@@ -145,24 +145,45 @@ export default function Orders({ token }) {
                                     <div className="space-y-4">
                                         {order.products.map((item) => (
                                             <div key={item._id} className="flex items-start border-b pb-4">
-                                                {item.product?.imageCover && (
-                                                    <img 
-                                                        src={item.product.imageCover} 
-                                                        alt={item.product.name} 
-                                                        className="w-16 h-16 object-cover rounded-md mr-4"
-                                                    />
-                                                )}
-                                                <div className="flex-1">
-                                                    <h5 className="font-medium text-gray-800">
-                                                        {item.product?.name || 'Unknown Product'}
-                                                    </h5>
-                                                    <div className="flex items-center text-sm text-gray-600 mt-1">
-                                                        <span className="mr-3">Qty: {item.quantity}</span>
-                                                        {item.size && (
-                                                            <span>Size: {item.size}</span>
+                                                {item.product ? (
+                                                    <>
+                                                        {item.product.imageCover && (
+                                                            <img 
+                                                                src={item.product.imageCover} 
+                                                                alt={item.product.name} 
+                                                                className="w-16 h-16 object-cover rounded-md mr-4"
+                                                            />
                                                         )}
+                                                        <div className="flex-1">
+                                                            <h5 className="font-medium text-gray-800">
+                                                                {item.product.name}
+                                                            </h5>
+                                                            <div className="flex items-center text-sm text-gray-600 mt-1">
+                                                                <span className="mr-3">Qty: {item.quantity}</span>
+                                                                {item.size && (
+                                                                    <span>Size: {item.size}</span>
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                    </>
+                                                ) : (
+                                                    <div className="flex items-center gap-4">
+                                                        <img 
+                                                            src="/default-product.png"
+                                                            alt="Deleted Product"
+                                                            className="w-16 h-16 object-cover rounded-md mr-4 opacity-50"
+                                                        />
+                                                        <div>
+                                                            <h5 className="font-medium text-red-600">Product deleted by admin</h5>
+                                                            <div className="flex items-center text-sm text-gray-400 mt-1">
+                                                                <span className="mr-3">Qty: {item.quantity}</span>
+                                                                {item.size && (
+                                                                    <span>Size: {item.size}</span>
+                                                                )}
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                )}
                                                 <div className="text-lg font-semibold text-blue-600">
                                                     {item.price} {currency}
                                                 </div>

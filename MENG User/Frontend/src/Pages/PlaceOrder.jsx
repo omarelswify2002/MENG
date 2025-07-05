@@ -17,7 +17,7 @@ export default function PlaceOrder() {
         token,
         getCartId,
         cartId,
-        getUserCart // استيراد الدالة من السياق
+        getUserCart 
     } = useContext(ShopContext);
     
     const [method, setMethod] = useState('cod');
@@ -69,12 +69,10 @@ export default function PlaceOrder() {
                             orderData, 
                             { headers: { Authorization: `Bearer ${token}` } }
                         );
-                        console.log('COD response:', response); // ✅ طباعة استجابة COD
+                        console.log('COD response:', response); 
                         if (response.data.status === "success") {
-                            // استدعاء دالة getUserCart لتحديث حالة السلة
                             await getUserCart();
                             
-                            // إعادة تعيين السلة محلياً
                             const emptyCart = {
                                 products: [],
                                 totalPrice: 0,
@@ -98,7 +96,7 @@ export default function PlaceOrder() {
                             orderData,
                             { headers: { Authorization: `Bearer ${token}` } }
                         );
-                        console.log('Stripe response:', response.data.session.url); // ✅ طباعة استجابة Stripe
+                        console.log('Stripe response:', response.data.session.url); 
                         if (response.data.status === "success") {
                             window.location.replace(response.data.session.url);
                         } else {

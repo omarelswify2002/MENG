@@ -4,7 +4,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { graduations } from "../graduation_project/graduations";
-// import GoogleAuthButton from "../Pages/GoogleAuthButton";
 
 export default function Login() {
     const [currentState , setCurrentState] = useState('Login')
@@ -59,40 +58,6 @@ export default function Login() {
         }
     }
 
-    // تعديل دالة handleGoogleLogin
-    // const handleGoogleLogin = async (credentialResponse) => {
-    //     try {
-    //     console.log('Google credential:', credentialResponse);
-        
-    //     if (!credentialResponse.credential) {
-    //         throw new Error('لم يتم استلام رمز جوجل');
-    //     }
-    
-    //     const response = await axios.post(
-    //         `${backendUrl}/api/google/login`,
-    //         { token: credentialResponse.credential },
-    //         {
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }
-    //         }
-    //     );
-    
-    //     if (response.data.success) {
-    //         setToken(response.data.token);
-    //         localStorage.setItem('token', response.data.token);
-    //         toast.success('تم تسجيل الدخول بنجاح');
-    //         navigate('/');
-    //     } else {
-    //         toast.error(response.data.message);
-    //     }
-    //     } catch (error) {
-    //     console.error('Google login error:', error);
-    //     toast.error(error.response?.data?.message || error.message || 'حدث خطأ أثناء تسجيل الدخول');
-    //     }
-    // };
-
-
     useEffect(()=>{
         if (token) {
             navigate('/')
@@ -114,79 +79,7 @@ export default function Login() {
                     <p className="text-3xl font-bold">{currentState}</p>
                     {currentState === 'Login' && <p>Enter your email and password to login.</p>}
                 </div>
-                {/* {currentState === 'Login' ? <p className="text-xl font-semibold prata-regular">Login With</p> : <p className="text-xl font-semibold prata-regular">Sign Up With</p>} */}
-                {/* <div className="flex items-center justify-center w-full"> */}
-                    {/* <button className="w-[40%] flex items-center justify-center gap-2 text-[12px] border border-white p-2 rounded-md text-white bg-[--color1]">Sign in with facebook <MdFacebook className="text-lg text-blue-700 bg-white rounded-full" /> </button> */}
-                    {/* <button className="w-[40%] flex items-center justify-center gap-2 text-[12px] border border-white p-2 rounded-md text-white bg-[--color1]">Sign in with google <FcGoogle className="text-lg text-blue-700 bg-white rounded-full" /> </button> */}
-                
-                    {/* <button 
-                        onClick={handleGoogleLogin}
-                        className="w-[40%] flex items-center justify-center gap-2 text-[12px] border border-white p-2 rounded-md text-white bg-[--color1] hover:bg-white hover:text-[--color1] transition-colors"
-                        >
-                        <FcGoogle className="text-lg bg-white rounded-full" />
-                        {currentState === 'Login' ? 'تسجيل الدخول بجوجل' : 'التسجيل بجوجل'}
-                    </button> */}
 
-
-{/* <GoogleLogin
-  clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-  buttonText="تسجيل الدخول بجوجل"
-  onSuccess={handleGoogleLogin}
-  onFailure={(error) => {
-    console.error('Google login failed:', error);
-    toast.error('فشل تسجيل الدخول بجوجل');
-  }}
-  cookiePolicy={'single_host_origin'}
-  redirectUri={window.location.origin}
-  isSignedIn={true}
-  uxMode="redirect"
-/> */}
-
-{/* <GoogleLogin
-  onSuccess={async (credentialResponse) => {
-    try {
-      const response = await axios.post(
-        `${backendUrl}/api/google/login`,
-        { token: credentialResponse.credential },
-        {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
-      );
-      
-      if (response.data.success) {
-        setToken(response.data.token);
-        localStorage.setItem('token', response.data.token);
-        toast.success('تم تسجيل الدخول بنجاح');
-        navigate('/');
-      }
-    } catch (error) {
-      toast.error(error.response?.data?.message || 'حدث خطأ أثناء تسجيل الدخول');
-    }
-  }}
-  onError={() => {
-    toast.error('فشل تسجيل الدخول بجوجل');
-  }}
-  useOneTap
-  auto_select
-  locale="ar"
-  theme="filled_blue"
-  size="large"
-  text="signin_with"
-  shape="rectangular"
-/> */}
-
-
-
-                {/* <GoogleAuthButton/> */}
-                {/* <OAuth/> */}
-                {/* </div> */}
-                {/* <div className="w-full fled flex-col items-center justify-center gap-4">
-                    <p className="prata-regular">Welcome back! We've missed you.</p>
-                    <p className="prata-regular">Your journey starts here. Sign in to continue.</p>
-                    <p className="prata-regular">Unlock exclusive features with your account.</p>
-                </div> */}
                 {currentState === 'Login' ?'': currentState === 'Forget Your Password' ? '' : <input onChange={(e)=>setName(e.target.value)} value={name} type="text" className="w-full px-3 py-2 border border-gray-800 rounded-md" placeholder="Name" />}
                 <input 
                     onChange={(e)=>setEmail(e.target.value)} 
@@ -218,13 +111,7 @@ export default function Login() {
                 </div>
                 }
                 <div className="w-full flex justify-end text-sm mt-[-8px]">
-                    {/* <p onClick={()=>navigate('/ForgetPassword')} className="cursor-pointer">Forget Your Password?</p> */}
                     {currentState === 'Login' && <p onClick={()=>navigate('/ResetPassword')} className="cursor-pointer">Forget Your Password?</p>}
-                    {/* {
-                        currentState === 'Login'
-                        ? <p onClick={()=>setCurrentState('Sign Up')} className="cursor-pointer">Create Acount</p>
-                        : <p onClick={()=>setCurrentState('Login')} className="cursor-pointer">Login Here</p>
-                    } */}
                 </div>
                 <button className="w-full transition-all duration-500 border border-[--color1] text-[--color1] hover:border-[--color1] hover:bg-[--color1] hover:text-white dark:hover:bg-[--textColor1] dark:hover:text-[--color1] dark:text-[--textColor1] dark:border-[--textColor1] dark:font-bold px-8 py-2 active:bg-gray-700 rounded-md">{currentState === 'Login' ? 'Login' : 'Sign Up'}</button>
             </form>

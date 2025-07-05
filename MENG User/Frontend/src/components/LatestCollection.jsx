@@ -1,34 +1,3 @@
-// import { useContext, useEffect, useState } from "react"
-// import { ShopContext } from "../context/ShopContextProvider"
-// import Title from "./Title"
-// import ProductItem from "./ProductItem"
-
-// export default function LatestCollection() {
-//     // const {products, getProductsData} = useContext(ShopContext)
-//     const {products} = useContext(ShopContext)
-//     const [latestProducts , setLatestProducts] = useState([])
-//     // useEffect(()=>{
-//     //     getProductsData() // تأكد من جلب بيانات المنتجات قبل استخدامها
-//     //     setLatestProducts(products.slice(0,10))
-//     // // eslint-disable-next-line react-hooks/exhaustive-deps
-//     // },[products])
-//     useEffect(() => {
-//     setLatestProducts(products.slice(0,10))
-// }, [products]) // تحديث العرض فقط عند تغير products
-//     return (
-//         <div className="px-4 pb-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] sm:pb-4 md:pb-4 lg:pb-4">
-//             <Title text1={'LATEST'} text2={'PRODUCTS'}/>
-//             {/* Rendering Products */}
-//             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6 py-5">
-//                 {latestProducts.map((item , index)=>(
-//                     <ProductItem key={index} id={item._id} imageCover={item.imageCover} name={item.name} price={item.price}/>
-//                 ))}
-//             </div>
-//         </div>
-//     )
-// }
-
-
 import { useContext, useEffect, useState } from "react"
 import { ShopContext } from "../context/ShopContextProvider"
 import Title from "./Title"
@@ -45,7 +14,6 @@ export default function LatestCollection() {
         const fetchLatestProducts = async () => {
             setIsLoading(true)
             try {
-                // جلب البيانات فقط إذا لم تكن موجودة بالفعل
                 if (products.length === 0) {
                     await getProductsData()
                 }

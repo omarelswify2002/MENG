@@ -660,20 +660,35 @@ export default function ShopContextProvider({ children }) {
                 return { success: false };
             }
         };
-    
-        // Logout function
-        const logout = () => {
-            localStorage.removeItem('token');
-            setToken('');
-            setUser(null);
-            setCartItems({});
+
+        const logout = async () => {
+            try {
+                // 1. استدعاء API الخروج باستخدام GET method
+                await axios.get(`${backendUrl}/api/v1/auth/logout`, {
+                    headers: { 
+                        Authorization: `Bearer ${token}` 
+                    } 
+                });
+
+                // 2. مسح البيانات المحلية
+                localStorage.removeItem('token');
+                setToken('');
+                setUser(null);
+                setCartItems({});
+                navigate('/Login');
+                toast.success('Logout successfully');
+            } catch (error) {
+                console.error('Error logging out:', error);
+                toast.error('حدث خطأ أثناء محاولة تسجيل الخروج');
+
+                // حتى لو فشل الطلب، نقوم بمسح البيانات المحلية
+                localStorage.removeItem('token');
+                setToken('');
+                setUser(null);
+                setCartItems({});
+                navigate('/Login');
+            }
         };
-    
-        // Fetch user when token changes
-        useEffect(() => {
-            fetchUserProfile();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, [token]);
 
         useEffect(()=>{
             if (!token && localStorage.getItem('token')) {
@@ -746,7 +761,6 @@ export default function ShopContextProvider({ children }) {
         isDark, setIsDark, submitRating,
         getProductById, createOrder, getUserProfile, updateUserProfile, getBestSeller
         , getHeroProducts , getSimilarProductsById, paginationResult , getUserCart,removeFromCart
-        // ,getCartId, cartId: cartItems?._id, fetchCartData
         ,getCartId, cartId: cartItems?._id,
         searchProductsWithLLM, setProducts
     }

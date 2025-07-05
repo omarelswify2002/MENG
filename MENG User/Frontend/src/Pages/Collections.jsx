@@ -24,7 +24,6 @@ export default function Collections() {
     const [keyword, setKeyword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    // جلب البيانات عند تغيير الفلاتر أو كلمة البحث أو نوع الفرز
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
@@ -37,7 +36,7 @@ export default function Collections() {
                 }
                 
                 await getProductsData(
-                    1, // دائما نبدأ من الصفحة الأولى عند تغيير الفلاتر
+                    1,
                     20,
                     'name price imageCover ratingsAverage ratingsQuantity',
                     keyword,
@@ -52,7 +51,6 @@ export default function Collections() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [keyword, filters, sortType]);
 
-    // جلب البيانات عند تغيير الصفحة فقط
     useEffect(() => {
         if (paginationResult?.currentPage) {
             const fetchPageData = async () => {
@@ -82,7 +80,6 @@ export default function Collections() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [paginationResult?.currentPage]);
 
-    // تغيير الصفحة
     const paginate = async (page) => {
         if (!page || page < 1 || page > (paginationResult?.numberOfPages || 1)) return;
         
@@ -103,7 +100,6 @@ export default function Collections() {
         );
     };
 
-    // تحديث الفلاتر
     const updateFilter = (filterType, value) => {
         setFilters(prev => {
             const newFilters = {...prev};
@@ -118,7 +114,6 @@ export default function Collections() {
             if (newFilters[filterType].includes(value)) {
                 newFilters[filterType] = newFilters[filterType].filter(item => item !== value);
                 
-                // إعادة تعيين الفلاتر التابعة
                 if (filterType === 'category') {
                     newFilters.typecategory = [];
                     newFilters.subcategory1 = [];
@@ -137,7 +132,6 @@ export default function Collections() {
         });
     };
 
-    // الحصول على خيارات الفلترة الفرعية
     const getSubFilterOptions = (filterType, parentFilterType) => {
         if (filterType === 'typecategory') {
             if (filters.category.length === 0) return [];
@@ -151,11 +145,6 @@ export default function Collections() {
         
         return [];
     };
-
-    // Handle search input
-    // const handleSearch = (e) => {
-    //     setKeyword(e.target.value);
-    // };
 
     return (
         <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">

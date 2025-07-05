@@ -39,12 +39,10 @@ export default function Favourites() {
     }, [getUserFavourites, initialLoad]);
 
     const favouriteProducts = useMemo(() => {
-    // إذا كانت favourites تحتوي على كائنات كاملة، نستخدمها مباشرة
     if (Array.isArray(favourites) && favourites.length > 0 && favourites[0]._id) {
         return favourites;
     }
     
-    // إذا كانت تحتوي على IDs فقط، نستخدم التصفية الأصلية
     return products.filter(product => 
         Array.isArray(favourites) && favourites.includes(product._id)
     );

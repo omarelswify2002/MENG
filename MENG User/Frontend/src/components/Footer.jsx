@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function Footer() {
 
     return (
-        <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] bg-[--footerColor] dark:bg-gray-700 text-[--textColor1]">
+        <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] bg-[--color1] dark:bg-gray-700 text-[--textColor1]">
             <div className="pt-4 sm:pt-[4vw] md:pt-[4vw] lg:pt-[4vw] flex flex-col sm:grid grid-cols-[3fr_1fr_1fr_0.5fr] gap-14 text-sm">
                 <div>
                     <img src={graduations.logo2} className="mb-5 w-32" alt="" />

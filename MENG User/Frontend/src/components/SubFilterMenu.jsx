@@ -26,23 +26,23 @@ const SubFilterMenu = ({ items, position = "right", onFilterChange, activeFilter
             {/* Dropdown menu */}
             {isOpen && (
                 <div 
-                    className={`absolute ${position === 'right' ? 'left-full ml-1' : 'right-full mr-1'} top-0 bg-white shadow-lg rounded-md p-3 z-20 w-48 border border-gray-200`}
+                    className={`absolute ${position === 'right' ? 'left-full ml-1' : 'right-full mr-1'} top-0 bg-[#024282] dark:bg-white dark:text-[#024282] shadow-lg rounded-xl p-3 z-20 w-48 border border-gray-200 text-white`}
                     onClick={(e) => e.stopPropagation()}
                 >
                     <div className="space-y-2">
                         {items.map((item) => (
                             <label 
                                 key={item.value} 
-                                className="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-1 rounded"
+                                className="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 hover:text-[#024282] dark:hover:bg-[#024282] dark:hover:text-gray-50 p-1 rounded"
                             >
                                 <input 
                                     type="checkbox" 
-                                    className="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out"
+                                    className="form-checkbox h-4 w-4 transition duration-150 ease-in-out"
                                     // eslint-disable-next-line react/prop-types
                                     checked={activeFilters.includes(item.value)}
                                     onChange={() => onFilterChange(item.value)}
                                 />
-                                <span className="text-sm text-gray-700">{item.label}</span>
+                                <span className="text-sm">{item.label}</span>
                             </label>
                         ))}
                     </div>

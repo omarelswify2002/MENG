@@ -27,7 +27,7 @@ export default function ProductItem({ id, imageCover, name, price, rating, revie
     };
     return (
         <div className={price && `h-[365px] sm:h-[285px] md:h-[300px] lg:w-full flex flex-col gap-1 transition-all duration-300 bg-[#FFFFFF] 
-        hover:bg-gradient-to-br from-[#E8E8E8] to-[#A9F7FF] text-gray-700 p-2 
+        hover:bg-[#2b5175] dark:hover:bg-[#2b5175] text-gray-800 p-2 hover:text-white
         border-[--textColor2] hover:border-[--textColor1] rounded-lg border-solid border-[1px] dark:bg-slate-500`}>
         
             <Link className="  h-[73%] sm:h-[60%] md:h-[63%] md:w-full lg:h-[66%] overflow-hidden cursor-pointer transition-all duration-300 hover:rounded-lg hover:border-[1px] hover:border-solid hover:border-[--textColor1]" onClick={() => window.scrollTo(0, 0)} to={`/product/${id}`}>
@@ -49,12 +49,7 @@ export default function ProductItem({ id, imageCover, name, price, rating, revie
                         </button>
                     }
                     <img className="w-full h-full transition-all ease-in-out duration-300 rounded-lg border-[1px] 
-                    border-solid border-[--textColor2] hover:scale-110 group-hover:blur-md" src={imageCover} alt={name} />
-                    
-                    <p className="absolute w-full p-1 text-center opacity-0 group-hover:opacity-100 transition-all 
-                    duration-500 right-1/2 top-1/2 translate-x-1/2 text-[--textColor1] text-[22px] font-bold
-                    text-outline-black-sm">Product Details</p>
-                
+                    border-solid border-[--textColor2] hover:scale-110" src={imageCover} alt={name} />                
                 </div>
             </Link>
             {price && (
@@ -63,18 +58,18 @@ export default function ProductItem({ id, imageCover, name, price, rating, revie
                     {/* Top Row - Name & Price (Left) / Rating & Heart (Right) */}
                     <div className="flex flex-col mb-2">
                         <h3 
-                        className="font-medium text-gray-800 dark:text-white line-clamp-auto sm:line-clamp-2 leading-tight"
-                        title={name} // سيظهر كتلميح عند التحويم
+                        className="font-medium dark:text-white line-clamp-auto sm:line-clamp-2 leading-tight"
+                        title={name}
                         >
                             {name}
                         </h3>
                         
                         <div className="flex justify-between">
-                            <p className="text-lg font-medium text-gray-900 dark:text-white">{price} {currency}</p>
+                            <p className="text-lg font-medium dark:text-white">{price} {currency}</p>
 
                             <div className="flex items-center mt-1">
                                 <StarRating rating={rating} />
-                                <span className="text-xs text-gray-500 ml-1">({reviewCount})</span>
+                                <span className="text-xs ml-1 dark:text-white">({reviewCount})</span>
                             </div>
                         </div>
                     </div>

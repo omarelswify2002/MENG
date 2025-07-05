@@ -635,7 +635,7 @@ export default function Add({token}) {
             
             {/* bestseller place */}
             
-            <button onClick={onSubmitHandler} type='submit' className='px-8 py-3 mt-4 border border-black text-sm hover:bg-black hover:text-white transition-all duration-500 text-black active:bg-gray-800'>
+            <button onClick={onSubmitHandler} type='submit' className='px-8 py-3 mt-4 border dark:text-white dark:border-white dark:bg-slate-800 border-black text-sm hover:bg-black hover:text-white transition-all duration-500 text-black active:bg-gray-800'>
                 ADD
             </button>                           
         </form>

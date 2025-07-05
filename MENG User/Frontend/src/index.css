@@ -23,11 +23,11 @@ a.active hr{
 }
 ::-webkit-scrollbar-track{
     border-radius: 5px;
-    box-shadow: inset 0 0 10px #68D5DF;
+    box-shadow: inset 0 0 10px #6d8091;
 }
 ::-webkit-scrollbar-thumb{
     border-radius: 5px;
-    background: linear-gradient(to top , #68D5DF , #263D54);
+    background: linear-gradient(to top , #6d8091 , #263D54);
 }
 
 html {

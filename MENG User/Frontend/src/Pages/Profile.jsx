@@ -32,6 +32,7 @@ const Profile = () => {
     });
     const [imageFile, setImageFile] = useState(null);
     const [imagePreview, setImagePreview] = useState('');
+    // eslint-disable-next-line no-unused-vars
     const [isUploading, setIsUploading] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [profileLoading, setProfileLoading] = useState(true);

@@ -1,107 +1,9 @@
-// import { MdOutlineShoppingCart } from "react-icons/md";
-// import ProductItem from './ProductItem';
-// import Title from "./Title";
-// import { useContext, useEffect, useState } from "react";
-// import { ShopContext } from "../context/ShopContextProvider";
-
-// export default function Hero() {
-//     const { navigate, getBestSeller, getHeroProducts } = useContext(ShopContext);
-//     const [outBestSeller, setOutBestSeller] = useState([]);
-//     const [heroProducts, setHeroProducts] = useState([]);
-//     const [currentIndex, setCurrentIndex] = useState(0);
-
-//     // جلب البيانات عند تحميل المكون
-//     useEffect(() => {
-//         const fetchData = async () => {
-//             try {
-//                 // جلب أفضل المنتجات مبيعاً (للعرض في الجانب الأيسر)
-//                 const bestSellers = await getBestSeller(3);
-//                 setOutBestSeller(bestSellers);
-                
-//                 // جلب منتجات الهيرو (للسلايدر في الجانب الأيمن)
-//                 const heroProductsData = await getHeroProducts(4);
-//                 setHeroProducts(heroProductsData);
-//             } catch (error) {
-//                 console.error("Error fetching data:", error);
-//             }
-//         };
-        
-//         fetchData();
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//     }, []);
-
-//     // إعداد السلايدر التلقائي
-//     useEffect(() => {
-//         if (heroProducts.length > 1) {
-//             const interval = setInterval(() => {
-//                 setCurrentIndex((prev) =>
-//                     prev === heroProducts.length - 1 ? 0 : prev + 1
-//                 );
-//             }, 3000);
-//             return () => clearInterval(interval);
-//         }
-//     }, [heroProducts.length]);
-
-//     return (
-//         <div className="px-4 pb-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] sm:pb-4 md:pb-4 lg:pb-4">
-//             <Title text1={'Ho'} text2={'me'}/>
-//             <div className="flex flex-col h-[800px] sm:h-auto gap-6 sm:flex-row mt-3 relative">
-//                 {/* Hero leftside */}
-//                 <div className="w-full sm:w-1/2 flex flex-col items-center justify-center pr-2 gap-y-8">
-//                     <div className="flex flex-col text-[#414141] w-full gap-3">
-//                         <h1 className="prata-regular text-2xl sm:py-3 lg:text-5xl leading-relaxed text-animation dark:text-[#dfdfdf]">
-//                             Welcome to our <span className="word-change dark:before:text-[#95bcbe] dark:after:border-l-[#95bcbe] dark:after:bg-slate-900"></span>
-//                         </h1>
-    
-//                         <div className="flex flex-col items-start gap-2 dark:text-[#dfdfdf]">
-//                             <p className="font-semibold text-sm md:text-[20px]">Your companion through the journey.</p>
-//                             <p className="font-semibold text-sm md:text-[20px]">With us, you will find what you want.</p>
-//                         </div>
-
-//                         <div className="flex items-center gap-2 dark:text-[#dfdfdf]">
-//                             <p className="w-8 md:w-11 h-[2px] bg-[#414141] dark:bg-[#dfdfdf]"></p>
-//                             <p className="font-medium text-sm md:text-base">OUR BESTSELLER</p>
-//                         </div>
-
-//                         <div onClick={()=>{navigate('/collections')}} className="w-[40%] bg-black dark:bg-[#dfdfdf] text-[--textColor1] dark:text-[--textColor2] cursor-pointer border-solid border-2 border-white flex items-center gap-2 justify-center py-3 rounded-xl relative transition-all duration-300 hover:border-[--textColor2] hover:bg-[--textColor1] dark:hover:bg-[#95bcbe] hover:text-[--textColor2] dark:hover:text-[--textColor1]">
-//                             <p className="font-semibold text-sm md:text-base">SHOP NOW</p>
-//                             <MdOutlineShoppingCart />
-//                         </div>
-//                     </div>
-
-//                     {/* OUT BESTSELLER */}
-//                     <div className="grid grid-cols-[repeat(3,1fr)] gap-x-[10px] w-full justify-center items-center">
-//                         {outBestSeller.map((item, index) => (
-//                             <ProductItem key={index} id={item._id} imageCover={item.imageCover}/>
-//                         ))}
-//                     </div>
-//                 </div>
-//                 {/* Hero rightside */}
-
-//                 <div className="w-full sm:w-[48%] sm:h-[95%] md:h-[96%] lg:h-[96%] my-3 sm:absolute right-0 rounded-xl shadow-2xl shadow-[#0000009a]">
-//                     {heroProducts.map((product, index) => (
-//                         <img
-//                             key={product._id}
-//                             src={product.imageCover}
-//                             alt={`Slide ${index}`}
-//                             className={`absolute bottom-0 w-full h-1/2 sm:h-full rounded-xl transition-all duration-1000 ease-in-out ${
-//                                 index === currentIndex ? "opacity-100 scale-100 z-10" : "opacity-0 scale-95 z-0"
-//                             }`}
-//                         />
-//                     ))}
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// }
-
-
 import { MdOutlineShoppingCart } from "react-icons/md";
 import ProductItem from './ProductItem';
 import Title from "./Title";
 import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContextProvider";
-import { motion, AnimatePresence } from "framer-motion"; // Import Framer Motion
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Hero() {
     const { navigate, getBestSeller, getHeroProducts } = useContext(ShopContext);
@@ -110,7 +12,6 @@ export default function Hero() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [loaded, setLoaded] = useState(false);
 
-    // جلب البيانات عند تحميل المكون
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -129,7 +30,6 @@ export default function Hero() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // إعداد السلايدر التلقائي
     useEffect(() => {
         if (heroProducts.length > 1) {
             const interval = setInterval(() => {
@@ -141,7 +41,6 @@ export default function Hero() {
         }
     }, [heroProducts.length]);
 
-    // تأثيرات الحركة
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
