@@ -98,16 +98,38 @@ export default function Cart() {
                                     </div>
                                 </div>
                                 
+                                {/* Appear in web */}
                                 <input 
                                     onChange={(e) => handleUpdateQuantity(
                                         item.product, 
                                         parseInt(e.target.value) || 0 , item.size
                                     )} 
-                                    className="border max-w-10 sm:max-w-20 py-1 px-1 sm:px-2" 
+                                    className={`hidden md:block border sm:max-w-20 py-1 px-1 sm:px-2`} 
                                     type="number" 
                                     min="1" 
                                     value={item.quantity} 
                                 />
+
+                                {/* Appear in mobile */}
+                                <div className={`md:hidden flex items-center gap-2 sm:gap-3`}>
+                                    <button 
+                                        onClick={() => handleUpdateQuantity(item.product, item.quantity - 1, item.size)}
+                                        className="w-8 h-8 flex items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
+                                    >
+                                        <span className="text-lg font-bold">−</span>
+                                    </button>
+                                
+                                    <div className="w-10 text-center border border-gray-300 rounded py-1">
+                                        {item.quantity}
+                                    </div>
+                                
+                                    <button 
+                                        onClick={() => handleUpdateQuantity(item.product, item.quantity + 1, item.size)}
+                                        className="w-8 h-8 flex items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
+                                    >
+                                        <span className="text-lg font-bold">+</span>
+                                    </button>
+                                </div>
                                 
                                 <img 
                                     onClick={() => handleRemoveItem(item.product , item.size)} 

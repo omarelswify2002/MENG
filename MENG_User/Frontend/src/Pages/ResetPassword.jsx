@@ -164,10 +164,10 @@ const ResetPassword = () => {
     );
 
     return (
-        <div className="grid grid-cols-2 h-screen">
+        <div className="grid grid-cols-1 sm:grid-cols-2 h-screen">
             <div className="prata-regular px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] w-full flex flex-col gap-6">
                 <div className="w-full flex justify-center items-center mb-24 mt-4">
-                    <img src={graduations.logo2} className="w-[35%] translate-x-[5%] sm:translate-x-[10%]" alt="" />
+                    <img onClick={()=>navigate('/')} src={graduations.logo2} className="w-[35%] translate-x-[5%] sm:translate-x-[10%]" alt="" />
                 </div>
                 <div className="flex flex-col gap-6">
                     <p className="text-3xl font-bold">{step === 1?'Forget your password?':step === 2?'Check in your email!':'Enter new password'}</p>
@@ -179,7 +179,7 @@ const ResetPassword = () => {
                 {step === 2 && renderStep2()}
                 {step === 3 && renderStep3()}
             </div>
-            <div className="relative">
+            <div className="hidden sm:block relative">
                 <img className="absolute w-full h-full border-l-white border rounded-l-2xl" src={graduations.Medical_gloves2} alt="" />
                 <div className="absolute left-28 top-16 gap-1 w-[70%]">
                     <h1 className="font-medium text-2xl">Don&apos;t have an account?</h1>
@@ -190,6 +190,9 @@ const ResetPassword = () => {
                 </div>
                 <button onClick={()=>navigate('/Login')} className="absolute left-[50%] top-[60%] translate-x-[-50%] border border-white hover:border-black px-8 py-4 font-medium text-2xl text-white hover:bg-white hover:text-black rounded-lg transition-all duration-500">Create An Account</button>
             </div>
+
+            <button onClick={()=>navigate('/Login')} className="block sm:hidden border border-black w-[90%] m-auto mt-10 py-4 font-medium text-2xl text-black rounded-lg">Login</button>
+
         </div>
     );
 };

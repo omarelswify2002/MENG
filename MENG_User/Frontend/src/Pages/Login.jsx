@@ -110,7 +110,8 @@ export default function Login() {
                     </button>
                 </div>
                 }
-                <div className="w-full flex justify-end text-sm mt-[-8px]">
+                <div className="w-full flex justify-between sm:justify-end text-sm mt-[-8px]">
+                    {currentState === 'Login' ? <p onClick={()=>setCurrentState('Sign Up')} className="block sm:hidden cursor-pointer">Create An Account</p> : <p onClick={()=>setCurrentState('Login')} className="block sm:hidden cursor-pointer">Login</p>}
                     {currentState === 'Login' && <p onClick={()=>navigate('/ResetPassword')} className="cursor-pointer">Forget Your Password?</p>}
                 </div>
                 <button className="w-full transition-all duration-500 border border-[--color1] text-[--color1] hover:border-[--color1] hover:bg-[--color1] hover:text-white dark:hover:bg-[--textColor1] dark:hover:text-[--color1] dark:text-[--textColor1] dark:border-[--textColor1] dark:font-bold px-8 py-2 active:bg-gray-700 rounded-md">{currentState === 'Login' ? 'Login' : 'Sign Up'}</button>
