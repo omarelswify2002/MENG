@@ -189,11 +189,11 @@ export default function Add({token}) {
                         <option className='text-black font-bold'>select a subcategory:</option>
                             <option value={"Overalls"}>Overalls</option>
                             <option value={"Helmet"}>Helmet</option>
-                            <option value="glasses">glasses</option>
-                            <option value="jackets">jackets</option>
+                            <option value="Glasses">Glasses</option>
+                            <option value="Jackets">Jackets</option>
                             <option value="Pants">Pants</option>
-                            <option value="safety shoes">safety shoes</option>
-                            <option value="gloves">gloves</option>
+                            <option value="Safety shoes">Safety shoes</option>
+                            <option value="Gloves">Gloves</option>
                         </select>
                     </div>
                     :category === 'Geometric' && typecategory === 'Tools'?
@@ -430,7 +430,7 @@ export default function Add({token}) {
                             <option value={"Knee-Pad Pants"}>Knee-Pad Pants</option>
                         </select>
                     </div>
-                    :category === 'Geometric' && typecategory === 'Clothes' && subcategory1 === 'safety shoes'?
+                    :category === 'Geometric' && typecategory === 'Clothes' && subcategory1 === 'Safety shoes'?
                     <div>
                         <p className='mb-2'>Sub Category Details:</p>
                         <select onChange={(e)=>setٍSubcategogy2(e.target.value)} className='w-full px-3 py-2'>
@@ -557,7 +557,7 @@ export default function Add({token}) {
                             <p className={`${sizes.includes('44') ? 'bg-[#1B5CBECC]' : 'bg-slate-200'} ${sizes.includes('44') ? 'text-white' : 'text-gray-600'} px-3 py-1 cursor-pointer`}>44</p>
                         </div>
                     </div>
-                :category === 'Geometric' && typecategory === 'Clothes' && subcategory1 === 'safety shoes'?
+                :category === 'Geometric' && typecategory === 'Clothes' && subcategory1 === 'Safety shoes'?
                     //safety shoes
                     <div className={`flex gap-3`}>
                         <div onClick={()=>setSizes(prev => prev.includes('35') ? prev.filter(item => item !== '35') : [...prev , '35'])}> 
