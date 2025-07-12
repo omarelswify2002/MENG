@@ -142,6 +142,7 @@ export default function BestSeller() {
                         variants={slideInVariants}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
+                        className="w-1/2"
                     >
                         <Link to={`/Collections`} className="relative group w-1/2 shadow-md rounded-lg shadow-white">
                             <motion.img
@@ -172,6 +173,7 @@ export default function BestSeller() {
                         variants={slideInVariants}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
+                        className="w-1/2"
                     >
                         <Link to={`/Collections`} className="relative group w-1/2 shadow-md rounded-lg shadow-white">
                             <motion.img

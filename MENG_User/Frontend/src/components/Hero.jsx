@@ -172,7 +172,8 @@ export default function Hero() {
                             <motion.div 
                                 key={index}
                                 variants={itemVariants}
-                                whileHover={{ scale: 1.05 }}
+                                whileHover={{ scale: 1 }}
+                                className="w-full h-full"
                             >
                                 <ProductItem id={item._id} imageCover={item.imageCover}/>
                             </motion.div>

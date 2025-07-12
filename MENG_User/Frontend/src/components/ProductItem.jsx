@@ -31,7 +31,7 @@ export default function ProductItem({ id, imageCover, name, price, rating, revie
         border-[--textColor2] hover:border-[--textColor1] rounded-lg border-solid border-[1px] dark:bg-slate-500`}>
         
             <Link className="  h-[73%] sm:h-[60%] md:h-[63%] md:w-full lg:h-[66%] overflow-hidden cursor-pointer transition-all duration-300 hover:rounded-lg hover:border-[1px] hover:border-solid hover:border-[--textColor1]" onClick={() => window.scrollTo(0, 0)} to={`/product/${id}`}>
-                <div className={price && `relative group w-full h-full`}>
+                <div className={price ? `relative group w-full h-full` : `w-full h-[66%]`}>
                     {price &&
                         <button 
                             onClick={handleFavouriteClick}
