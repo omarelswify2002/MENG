@@ -165,20 +165,24 @@ export default function Hero() {
 
                     {/* OUT BESTSELLER */}
                     <motion.div 
-                        className="grid grid-cols-[repeat(3,1fr)] gap-x-[10px] w-full justify-center items-center"
+                        className="grid grid-cols-3 gap-2 w-full"
                         variants={containerVariants}
                     >
                         {outBestSeller.map((item, index) => (
                             <motion.div 
                                 key={index}
                                 variants={itemVariants}
-                                whileHover={{ scale: 1 }}
-                                className="w-full h-full"
+                                whileHover={{ scale: 1.05 }}
+                                className="aspect-square overflow-hidden bg-white rounded-lg shadow-md"
                             >
-                                <ProductItem id={item._id} imageCover={item.imageCover}/>
+                                <ProductItem 
+                                    id={item._id} 
+                                    imageCover={item.imageCover}
+                                />
                             </motion.div>
                         ))}
                     </motion.div>
+                
                 </motion.div>
                 
                 {/* Hero rightside */}
